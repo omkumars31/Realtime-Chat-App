@@ -11,10 +11,14 @@ import { useEffect } from "react";
 import {Loader} from "lucide-react";
 import "./index.css"
 import {Toaster} from "react-hot-toast";
-import ImageUploader from './components/ImageUploader';
+import React from "react";
+import { useThemeStore } from "./store/useThemeStore";
+
+
 const App = () => {
 
   const {authUser, checkAuth, isCheckingAuth} = useAuthStore();
+  const {theme} = useThemeStore()
   useEffect(() => {
   //console.log("calling checkAuth...");
   checkAuth();
@@ -31,23 +35,20 @@ console.log({authUser});
 
 return(
     
-    <div>
+    <div data-theme={theme}>
 
       <Navbar/>
 
       <Routes>
         <Route path="/" element={authUser ? <HomePage /> : <Navigate to= "/login"/> } />
-        <Route path="/signup" element={!authUser ? <SignUpPage/> : <Navigate to="/" />} />
+        <Route path="/signup" element={!authUser ? <SignUpPage/> : <Navigate to="/" />}  />
         <Route path="/login" element={!authUser ? <LoginPage/> : <Navigate to="/" />} />
         <Route path="/settings" element={<SettingsPage/>} />
         <Route path="/profile" element={authUser ? <ProfilePage /> : <Navigate to= "/login"/> } />
       </Routes>
 
       <Toaster/>
-      <div>
-      <h1>Upload Demo</h1>
-      <ImageUploader />
-    </div>
+      
     </div>
     
   );

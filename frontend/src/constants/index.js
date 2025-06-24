@@ -1,17 +1,4 @@
-import daisyui from 'daisyui';
-import themes from 'daisyui/theme/object';
-
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [require('daisyui')],
-  daisyui: {
-    themes: [
+export const THEMES = [
       "light",
       "dark",
       "cupcake",
@@ -44,6 +31,4 @@ export default {
       "dim",
       "nord",
       "sunset",
-    ],
-  }
-};
+    ]
